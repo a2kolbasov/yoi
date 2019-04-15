@@ -1,0 +1,6 @@
+﻿++ только в Терминале
+
+i = pos;
+
+try print()
+  catch {  if i!=pos => throws Exception }
