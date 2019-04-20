@@ -4,10 +4,9 @@ import alxkolb.yoi.lexer.Token;
 import java.util.LinkedList;
 import java.util.Stack;
 
-public class RPN { // https://ru.wikipedia.org/wiki/Алгоритм_сортировочной_станции
+public class RPN {
     // Обратная польская запись в виде токенов
     private LinkedList<Token> outRPN = new LinkedList<>();
-    //private Stack<Token> stackMachine = new Stack<>();
 
     private boolean higherPriority(String op1, String op2) {
         return (op1.equals("*") || op1.equals("/")) && (op2.equals("+") || op2.equals("-"));
@@ -168,8 +167,8 @@ public class RPN { // https://ru.wikipedia.org/wiki/Алгоритм_сорти�
             switch (type) {
                 // Если следующий токен - операнд, то сразу добавить в полиз
                 case "VAR":
+                case "SYS": // print table
                 case "NUM":
-                //case "CONST_FLOAT":
                 case "STRUCT_NAME":
                     outRPN.add(token);
                     break;

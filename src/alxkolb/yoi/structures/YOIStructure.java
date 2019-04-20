@@ -1,10 +1,7 @@
-package alxkolb.yoi.lists;
+package alxkolb.yoi.structures;
 
-public interface YOILists {
+public interface YOIStructure {
     void add(Object o);
     void remove(Object o);
-
-    Object get(int index);
-
     boolean contains(Object o);
 }

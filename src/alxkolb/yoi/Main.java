@@ -37,12 +37,13 @@ public class Main {
                 "OPEN_BRACE", "\\{",
                 "CLOSE_BRACE", "}",
                 "LOGIC_OP", "<|>|==|<=|>=|<>",
+                "SYS", "\\@[a-zA-Z]*", // print table
                 "VAR", "[a-zA-Z]+[0-9]*",
                 "NUM", "[0-9]+"
         );
 
         //////////
-        int stringNumber = 3;
+        int stringNumber = 4;
         //////////
         String input = getTestInputString(stringNumber);
 
@@ -89,13 +90,14 @@ public class Main {
                 //// 3
                 "let L is list; L add 5; L add 6; L add 7; print (L get 2);",
                 ////
-                "let a is set; a add 1; a add 1; a add 1; print a; a add 2; print a; a has 1; a has 2; a has 3;" +
+                "let a is set; a add 1; a add 1; a add 50; print a; a add 2; print a; a has 1; a has 2; a has 3;" +
                         "a remove 1; print a; a has 2; a has 1;",
                 ////
                 "for (i = 0; i < 5; i = i + 1) {print i;}",
                 ////
                 "c = 1; b = 2; let a is list; a add 5; a add 6; print (b + c);",
-                ////
+                //// 7
+                "a=5; b = 1+a; print @var;",
         };
         return strings[number];
     }

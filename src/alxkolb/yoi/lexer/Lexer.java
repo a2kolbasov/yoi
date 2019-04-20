@@ -4,17 +4,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Lexer {
-    // Лучше массив []
     private LinkedList<Lexeme> lexemes = new LinkedList<>();
 
     public Lexer(String... inputLexemes) throws Exception{ // s[2n] = name , s[2n-1] = val ...
-        if (inputLexemes.length % 2 != 0) {
-            /*
-            System.err.println("terms % 2 != 0");
-            System.exit(1);
-            */
+        if (inputLexemes.length % 2 != 0)
             throw new Exception("Lexer :: terms % 2 != 0");
-        }
         for (int i = 0; i<inputLexemes.length; i+=2)
             addLexeme(inputLexemes[i],inputLexemes[i+1]);
     }
@@ -24,10 +18,6 @@ public class Lexer {
                 new Lexeme(type, Pattern.compile(reg_value))
         );
     }
-
-    //      ++++++++++++++++++++++++++++++++++
-
-// Scanner.next() = :spase:     .nextLine = \n
 
     public LinkedList<Token> getTokens(final String inputData) throws Exception{
         LinkedList<Token> tokens = new LinkedList<>();
@@ -44,7 +34,6 @@ public class Lexer {
 
             for (Lexeme lexeme : lexemes) {
                 Matcher m = lexeme.pattern.matcher(ac);
-                //m.find();
                 if (m.matches()) {
                     lastFoundToken = new Token(ac, lexeme.type);
                     found = true;
@@ -63,7 +52,9 @@ public class Lexer {
                     lastFoundToken = null;
                 } else {
                     pos++;
-                    if (!(ac.equals(" ") || ac.equals("\n")) || ac.equals("\t"))
+                    if ( !(
+                            ac.equals(" ") || ac.equals("\n") || ac.equals("\t")
+                            ))
                         // Обнаружена синтаксическая ошибка
                         throw new Exception("Lexer :: nothing found: " + ac);
                 }

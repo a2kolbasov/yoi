@@ -1,6 +1,6 @@
-package alxkolb.yoi.lists;
+package alxkolb.yoi.structures;
 
-public class YOILinkedList implements YOILists {
+public class YOILinkedList implements YOIStructure {
     private class Node {
         Object data;
         Node prev;

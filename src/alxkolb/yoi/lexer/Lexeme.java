@@ -8,7 +8,7 @@ class Lexeme {
 
     Lexeme(String type, Pattern pattern){
         this.type = type;
-        this.pattern = pattern; // Pattern.compile(value)
+        this.pattern = pattern;
     }
 
     Lexeme(String type, String reg_value) {

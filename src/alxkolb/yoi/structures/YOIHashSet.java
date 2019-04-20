@@ -1,6 +1,6 @@
-package alxkolb.yoi.lists;
+package alxkolb.yoi.structures;
 
-public class YOIHashSet implements YOILists {
+public class YOIHashSet implements YOIStructure {
     private YOILinkedList[] content;
     private int count;
 
@@ -126,8 +126,10 @@ public class YOIHashSet implements YOILists {
         return s;
     }
 
+    /*
     @Override
     public Object get(int index) {
         return null;
     }
+    */
 }

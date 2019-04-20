@@ -1,0 +1,37 @@
+lang → expr*
+expr → set_val | while | print | for | if | list | sys
+
+set_val → VAR ((ASSIGN_OP math_op) | list_set_op value) END
+while → WHILE logic body
+print  → PRINT math_op END
+for  → FOR LFS for_logic RFS body
+if  → IF LS logic RS body
+list → LET VAR list_type END
+math_op → value (OP value)* END
+logic → value LOGIC_OP value
+body → LFS expr+ RFS
+for_logic → set_val logic END set_val
+list_type → IS (LIST | SET)
+value → VAR | INT | list_get_op
+list_get_op → VAR GET math_op
+sys → PRINT SYS END
+
+VAR → [a-zA-Z]+[0-9]*
+INT → ^0|([1-9][0-9]*)$
+ASSIGN_OP → =
+LOGIC_OP → <|>|==|<=|>=|!=
+OP → +|-|*|/
+END → ;
+WHILE → "while"
+PRINT → "print"
+FOR → "for"
+LET → "let"
+GET → "get"
+LIST → "list"
+SET → "set"
+IS → "is"
+LS → (
+RS → )
+LFS → {
+RFS → }
+SYS → @[a-z]*

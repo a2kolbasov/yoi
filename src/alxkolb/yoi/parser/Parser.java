@@ -19,15 +19,11 @@ public class Parser {
                 lang();
         } catch (ParseException p) {
             System.out.println(p.getMessage());
-            //p.printStackTrace();
             return false;
         } catch (Exception e){
-            //e.printStackTrace();
-            //return true;
-        } finally {//     TODO : СПРОСИТЬ ОБ ЭТОМ !!!
-            //return true;
+            System.out.println("Неожиданный конец программы");
+            return false;
         }
-
         return true;
     }
 
@@ -43,7 +39,7 @@ public class Parser {
         throw new ParseException(appropriateType, token);
     }
 
-    private void match() {
+    private void match() throws ParseException{
         currentToken = tokens.poll();
         expr.add(currentToken);
     }
@@ -263,11 +259,11 @@ public class Parser {
             case "NUM":
                 constInt();
                 break;
-            case "CONST_FLOAT":
-                constFloat();
+            case "SYS": // print TABLE
+                checkToken("SYS");
                 break;
             default:
-                error(token, "VAR | NUM | CONST_FLOAT");
+                error(token, "VAR | NUM | SYS");
                 tokens.remove();
         }
     }
@@ -294,10 +290,6 @@ public class Parser {
 
     private void constInt() throws ParseException {
         checkToken("NUM");
-    }
-
-    private void constFloat() throws ParseException {
-        checkToken("CONST_FLOAT");
     }
 
     private void compOp() throws ParseException {

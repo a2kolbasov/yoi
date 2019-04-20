@@ -1,9 +1,9 @@
 package alxkolb.yoi.stackMachine;
 
 import alxkolb.yoi.lexer.Token;
-import alxkolb.yoi.lists.YOIHashSet;
-import alxkolb.yoi.lists.YOILinkedList;
-import alxkolb.yoi.lists.YOILists;
+import alxkolb.yoi.structures.YOIHashSet;
+import alxkolb.yoi.structures.YOILinkedList;
+import alxkolb.yoi.structures.YOIStructure;
 
 import java.util.LinkedList;
 import java.util.Stack;
@@ -16,6 +16,10 @@ public class StackMachine {
     public StackMachine(LinkedList<Token> tokens){
         this.tokens = tokens;
         this.table = new VariableTable();
+        /*
+        for (Token t:tokens)
+            System.out.println(t);
+        */
     }
 
     private void typeError(String operarion) throws Exception {
@@ -116,7 +120,7 @@ public class StackMachine {
             switch (currentToken.getType()) {
                 case "VAR":
                 case "NUM":
-                //case "CONST_FLOAT":
+                case "SYS": //print table
                 case "LABEL_START":
                 case "LABEL_END":
                 case "STRUCT_NAME":
@@ -146,7 +150,11 @@ public class StackMachine {
                     Token token = stack.pop();
                     String arg = token.getType().equals("VAR") ?
                             table.getVariableValue(token.getValue()).toString() : token.getValue();
-                    System.out.println(arg);
+                    //System.out.println(arg);
+                    //System.out.println("////"+arg);
+                    System.out.println( // print table
+                            arg.equals("@var") ? table.toString() : arg
+                    );
                     break;
                 case "IS_KW":
                     String type = stack.pop().getValue();
@@ -173,7 +181,7 @@ public class StackMachine {
                     }
 
                     String structureName = stack.pop().getValue();
-                    YOILists structure = (YOILists) table.getVariableValue(structureName);
+                    YOIStructure structure = (YOIStructure) table.getVariableValue(structureName);
                     switch (currentToken.getValue()) {
                         case "add":
                             structure.add(operand);
