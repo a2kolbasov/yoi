@@ -43,7 +43,7 @@ public class Main {
         );
 
         //////////
-        int stringNumber = 4;
+        int stringNumber = 7;
         //////////
         String input = getTestInputString(stringNumber);
 
