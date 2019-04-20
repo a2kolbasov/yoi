@@ -6,19 +6,38 @@ import alxkolb.yoi.parser.Parser;
 import alxkolb.yoi.rpn.RPN;
 import alxkolb.yoi.stackMachine.StackMachine;
 
+import java.io.IOException;
 import java.util.LinkedList;
 
 public class Main {
     public static void main(String[] args) {
         try {
-            run();
+            String filePath, inputData;
+            FileReader fileReader = new FileReader();
+            if (args.length == 1){
+                filePath = args[0];
+                inputData = fileReader.read(filePath);
+                System.out.println(
+                        filePath+
+                                ":\n////\n" +
+                                inputData +
+                                "\n////\n"
+                );
+            } else {
+                inputData = null;
+                System.out.println("Не задан входной файл. Запущен тестовый пример.\n");
+            }
+            run(inputData);
+        } catch (IOException e){
+            System.err.println("Не найден файл " + e.getMessage());
+            System.exit(1);
         } catch (Exception e) {
             System.out.println(e.getMessage());
             System.exit(1);
         }
     }
 
-    private static void run() throws Exception{
+    private static void run(String inputData) throws Exception{
         Lexer lexer = new Lexer(
                 "WHILE_KW", "while",
                 "STRUCT_NAME", "list|set",
@@ -42,12 +61,10 @@ public class Main {
                 "NUM", "[0-9]+"
         );
 
-        //////////
-        int stringNumber = 7;
-        //////////
-        String input = getTestInputString(stringNumber);
+        if (inputData == null)
+            inputData = getTestInputString();
 
-        final LinkedList<Token> lexerTokens = lexer.getTokens(input);
+        final LinkedList<Token> lexerTokens = lexer.getTokens(inputData);
 
         System.out.println("Tokens from Lexer:");
         for (Token t:lexerTokens)
@@ -56,9 +73,9 @@ public class Main {
         nextLab("lexer");
 
         Parser parser = new Parser(lexerTokens);
-        boolean b = parser.parse();
-        System.out.println("Parser :: " + b);
-        if (!b)
+        boolean correct = parser.parse();
+        System.out.println("Parser :: " + correct);
+        if (!correct)
             System.exit(1);
 
         nextLab("parser");
@@ -76,7 +93,10 @@ public class Main {
         System.out.println("\n" + programPart + " -- ok\n//////////\n");
     }
 
-    private static String getTestInputString(int number){
+    private static String getTestInputString(){
+        //////////
+        int stringNumber = 7;
+        //////////
         String[] strings = new String[]{
                 //// 0
                 "a = 0;" + "for (i = 0; i < 10; i = i + 2) {" + "a = a + 1;" + "}" + "print a;",
@@ -99,7 +119,7 @@ public class Main {
                 //// 7
                 "a=5; b = 1+a; print @var;",
         };
-        return strings[number];
+        return strings[stringNumber];
     }
 
 }
