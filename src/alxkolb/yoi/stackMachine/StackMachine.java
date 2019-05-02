@@ -1,9 +1,9 @@
 package alxkolb.yoi.stackMachine;
 
-import alxkolb.yoi.lexer.Token;
-import alxkolb.yoi.structures.YOIHashSet;
-import alxkolb.yoi.structures.YOILinkedList;
-import alxkolb.yoi.structures.YOIStructure;
+import alxkolb.yoi.utils.Token;
+import alxkolb.yoi.utils.structures.YOIHashSet;
+import alxkolb.yoi.utils.structures.YOILinkedList;
+import alxkolb.yoi.utils.structures.YOIStructure;
 
 import java.util.LinkedList;
 import java.util.Stack;
@@ -187,11 +187,13 @@ public class StackMachine {
                             structure.add(operand);
                             break;
                         case "has":
-                            if (structure.contains(operand)) {
+                            System.out.println(
+                                    structure.contains(operand) ? "true" : "false"
+                            );
+                            /*
+                            if (structure.contains(operand))
                                 System.out.println(structureName + " has " + tokenOperand.getValue());
-                            } else {
-                                System.out.println(structureName + " has no " + tokenOperand.getValue());
-                            }
+                            */
                             break;
                         case "remove":
                             try {

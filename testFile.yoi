@@ -1,0 +1,14 @@
+a = 6;
+if (a > (2 + 3)) {
+    a = a + 2;
+    print (2 + 3);
+}
+let q is set;
+q add 1;
+q add 1;
+q add 50;
+print q;
+q has 1;
+q has 2;
+q remove 1;
+print q;

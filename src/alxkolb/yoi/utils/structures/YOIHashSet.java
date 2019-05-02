@@ -1,4 +1,4 @@
-package alxkolb.yoi.structures;
+package alxkolb.yoi.utils.structures;
 
 public class YOIHashSet implements YOIStructure {
     private YOILinkedList[] content;

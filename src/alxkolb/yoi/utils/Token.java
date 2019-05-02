@@ -1,4 +1,4 @@
-package alxkolb.yoi.lexer;
+package alxkolb.yoi.utils;
 
 public class Token {
     private String value;

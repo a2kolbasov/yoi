@@ -1,6 +1,6 @@
 package alxkolb.yoi.rpn;
 
-import alxkolb.yoi.lexer.Token;
+import alxkolb.yoi.utils.Token;
 import java.util.LinkedList;
 import java.util.Stack;
 

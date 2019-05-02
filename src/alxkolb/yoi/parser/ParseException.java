@@ -1,5 +1,5 @@
 package alxkolb.yoi.parser;
-import alxkolb.yoi.lexer.Token;
+import alxkolb.yoi.utils.Token;
 
 public class ParseException extends Exception{
     public ParseException(String message) {

@@ -1,6 +1,6 @@
 package alxkolb.yoi.parser;
 
-import alxkolb.yoi.lexer.Token;
+import alxkolb.yoi.utils.Token;
 import java.util.LinkedList;
 
 public class Parser {

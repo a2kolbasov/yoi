@@ -1,4 +1,6 @@
 package alxkolb.yoi.lexer;
+import alxkolb.yoi.utils.Token;
+
 import java.util.LinkedList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

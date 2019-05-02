@@ -1,4 +1,4 @@
-package alxkolb.yoi.structures;
+package alxkolb.yoi.utils.structures;
 
 public interface YOIStructure {
     void add(Object o);
