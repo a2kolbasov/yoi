@@ -33,8 +33,8 @@ public class Run {
         final LinkedList<Token> lexerTokens = lexer.getTokens(inputData);
 
         System.out.println("Tokens from Lexer:");
-        for (Token t:lexerTokens)
-            System.out.println(t);
+        for (Token token:lexerTokens)
+            System.out.println(token);
 
         nextApp("lexer");
 
@@ -46,7 +46,11 @@ public class Run {
 
         nextApp("parser");
 
-        LinkedList<Token> rpnTokens = new RPN().getOutRPN(lexerTokens);
+        final LinkedList<Token> rpnTokens = new RPN().getOutRPN(lexerTokens);
+
+        System.out.println("Tokens from RPN:");
+        for (Token token:rpnTokens)
+            System.out.println(token);
 
         nextApp("rpn");
 
